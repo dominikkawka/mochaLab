@@ -116,14 +116,12 @@ describe("Catalogue", () => {
        });
 
       it("should return products cheaper than 25.", () => {
-         cat = new Catalogue("Test Catalogue");
-
          const result = cat.search({ price: 25.00})
          expect(result).to.have.lengthOf(2);
-
       })
       it("should return products with 'sho' in the name", () => {
-         cat.search({ keyword: 'sho'})
+         const result = cat.search({ keyword: 'sho'})
+         expect(result).to.have.key('sho')
       })
       it("should give an 'INVALID SEARCH' if given criteria doesn't fit", () => {
 
