@@ -51,5 +51,9 @@ class Catalogue {
       .reduce((acc, p) => acc + 1, 0);
     return noProductsAdded;
   }
+
+  search(criteria) {
+    return undefined
+  }
 }
 module.exports = Catalogue;

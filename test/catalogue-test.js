@@ -102,4 +102,16 @@ describe("Catalogue", () => {
    });
 });
 
+   describe("search", () => {
+      it("should return products cheaper than 25.", () => {
+
+      })
+      it("should return products with 'sho' in the name", () => {
+
+      })
+      it("should give an 'INVALID SEARCH' if given criteria doesn't fit", () => {
+
+      })
+   })
+
 });
