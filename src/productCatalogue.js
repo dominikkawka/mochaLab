@@ -34,5 +34,12 @@ class Catalogue {
       .map((p) => p.id);
     return result;
   }
+
+  batchAddProducts(batch) {
+    batch.products.forEach( p => 
+       this.addProduct(p)
+    )
+    return batch.products.length
+  }
 }
 module.exports = Catalogue;
