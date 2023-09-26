@@ -103,11 +103,27 @@ describe("Catalogue", () => {
 });
 
    describe("search", () => {
+
+      beforeEach(function () {
+         batch = {
+           type: 'Batch',
+           products: [
+            new Product("A130", "Shoulder pads", 100, 25.00, 10.0),
+            new Product("A131", "Shoes", 100, 25.01, 10.0),
+            new Product("A132", "Sea Shanties collection", 100, 12, 10.0),
+           ],
+         };
+       });
+
       it("should return products cheaper than 25.", () => {
+         cat = new Catalogue("Test Catalogue");
+
+         const result = cat.search({ price: 25.00})
+         expect(result).to.have.lengthOf(2);
 
       })
       it("should return products with 'sho' in the name", () => {
-
+         cat.search({ keyword: 'sho'})
       })
       it("should give an 'INVALID SEARCH' if given criteria doesn't fit", () => {
 
