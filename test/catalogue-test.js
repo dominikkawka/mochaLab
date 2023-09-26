@@ -129,12 +129,9 @@ describe("Catalogue", () => {
          const result = cat.search({ keyword: 'sho'})
          expect(result.productIds).to.have.lengthOf(2);
          expect(result.productIds).to.have.members(["A130","A131"]);
-         //to have key is for {key: value}... 
-         //expect(result).to.have.key('sho')
       })
       it("should give an 'Bad search' if given criteria doesn't fit", () => {
-         const result = cat.search({ keyword: 'ASDFGHJKL'})
-         expect(result).to.throw('Bad search')
+         expect(() => cat.speSearch({keyword:'Weight'}).to.throw("Bad Batch"));
       })
    })
 

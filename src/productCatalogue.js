@@ -62,8 +62,9 @@ class Catalogue {
       //result.productIds = this.products.filter((p) => p.name.search(lowercase)).map((p) => p.id);
       result.productIds = this.products.filter((p) => p.name.search(criteria.keyword) >= 0).map((p) => p.id);
       return result
+    } else {
+      throw new Error("Bad search");
     }
-
   }
   
 }
