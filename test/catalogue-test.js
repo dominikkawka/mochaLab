@@ -124,7 +124,8 @@ describe("Catalogue", () => {
          expect(result).to.have.key('sho')
       })
       it("should give an 'INVALID SEARCH' if given criteria doesn't fit", () => {
-
+         const result = cat.search({ keyword: 'ASDFGHJKL'})
+         expect(result).to.throw('INVALID SEARCH')
       })
    })
 
