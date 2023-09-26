@@ -109,10 +109,10 @@ describe("Catalogue", () => {
       criteria = {
         type: 'Search',
         products: [
-          new Product("A130", "Shoulder pads", 100, 10, 25.00),
-          new Product("A131", "Shoes", 100, 10, 25.01),
-          new Product("A132", "Sea Shanties collection", 100, 10, 12),
-          new Product("A133", "Shoes", 100, 10, 30.50),
+          new Product("A130", "shoulder pads", 100, 10, 25.00),
+          new Product("A131", "shoes", 100, 10, 25.01),
+          new Product("A132", "sea Shanties collection", 100, 10, 12),
+          new Product("A133", "jacket", 100, 10, 30.50),
         ],
       };
       cat.batchAddProducts(criteria);
@@ -125,8 +125,12 @@ describe("Catalogue", () => {
          expect(result.productIds).to.have.members(["A130","A132"]);
       })
       it("should return products with 'sho' in the name", () => {
+        
          const result = cat.search({ keyword: 'sho'})
-         expect(result).to.have.key('sho')
+         expect(result.productIds).to.have.lengthOf(2);
+         expect(result.productIds).to.have.members(["A130","A131"]);
+         //to have key is for {key: value}... 
+         //expect(result).to.have.key('sho')
       })
       it("should give an 'Bad search' if given criteria doesn't fit", () => {
          const result = cat.search({ keyword: 'ASDFGHJKL'})

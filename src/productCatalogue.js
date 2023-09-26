@@ -54,8 +54,17 @@ class Catalogue {
 
   search(criteria) {
     const result = { type: "search", productIds: [] };
-    result.productIds = this.products.filter((p) => p.price <= criteria.price).map((p) => p.id);
-    return result
+    if (criteria.price) {
+      result.productIds = this.products.filter((p) => p.price <= criteria.price).map((p) => p.id);
+      return result
+    } else if (criteria.keyword) {
+      //const lowercase = criteria.keyword.toLowerCase()
+      //result.productIds = this.products.filter((p) => p.name.search(lowercase)).map((p) => p.id);
+      result.productIds = this.products.filter((p) => p.name.search(criteria.keyword) >= 0).map((p) => p.id);
+      return result
+    }
+
   }
+  
 }
 module.exports = Catalogue;
