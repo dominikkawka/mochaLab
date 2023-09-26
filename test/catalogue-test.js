@@ -104,28 +104,33 @@ describe("Catalogue", () => {
 
    describe("search", () => {
 
-      beforeEach(function () {
-         batch = {
-           type: 'Batch',
-           products: [
-            new Product("A130", "Shoulder pads", 100, 25.00, 10.0),
-            new Product("A131", "Shoes", 100, 25.01, 10.0),
-            new Product("A132", "Sea Shanties collection", 100, 12, 10.0),
-           ],
-         };
-       });
+     beforeEach(function () {
+      cat = new Catalogue("Test Catalogue");
+      criteria = {
+        type: 'Search',
+        products: [
+          new Product("A130", "Shoulder pads", 100, 10, 25.00),
+          new Product("A131", "Shoes", 100, 10, 25.01),
+          new Product("A132", "Sea Shanties collection", 100, 10, 12),
+          new Product("A133", "Shoes", 100, 10, 30.50),
+        ],
+      };
+      cat.batchAddProducts(criteria);
+    });
 
       it("should return products cheaper than 25.", () => {
          const result = cat.search({ price: 25.00})
-         expect(result).to.have.lengthOf(2);
+         expect(result.productIds).to.have.lengthOf(2);
+         //console.log(cat.products)
+         expect(result.productIds).to.have.members(["A130","A132"]);
       })
       it("should return products with 'sho' in the name", () => {
          const result = cat.search({ keyword: 'sho'})
          expect(result).to.have.key('sho')
       })
-      it("should give an 'INVALID SEARCH' if given criteria doesn't fit", () => {
+      it("should give an 'Bad search' if given criteria doesn't fit", () => {
          const result = cat.search({ keyword: 'ASDFGHJKL'})
-         expect(result).to.throw('INVALID SEARCH')
+         expect(result).to.throw('Bad search')
       })
    })
 

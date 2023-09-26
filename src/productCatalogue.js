@@ -53,7 +53,9 @@ class Catalogue {
   }
 
   search(criteria) {
-    return undefined
+    const result = { type: "search", productIds: [] };
+    result.productIds = this.products.filter((p) => p.price <= criteria.price).map((p) => p.id);
+    return result
   }
 }
 module.exports = Catalogue;
